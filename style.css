@@ -1,0 +1,50 @@
+*{
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+  }
+  
+  .container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  #sidebar {
+    width: 250px;
+    background: #f4f4f4;
+    padding: 1em;
+    overflow-y: auto;
+  }
+  
+  #sidebar h2 {
+    margin-top: 0;
+  }
+  
+  #companyList {
+    list-style: none;
+    padding: 0;
+  }
+  
+  #companyList li {
+    margin: 0.5em 0;
+    cursor: pointer;
+    color: blue;
+  }
+  
+  #companyList li:hover {
+    text-decoration: underline;
+  }
+  
+  main {
+    flex-grow: 1;
+    padding: 1em;
+  }
+  
+  canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
