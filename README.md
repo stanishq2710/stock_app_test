@@ -23,10 +23,13 @@ A simple web-based visualization tool to view and compare various stock/index at
 ## 🗂️ Project Structure
 
 📁 stock_app_test/
-├── 📄 index.html # Main HTML page
-├── 📄 style.css # Theme styles and layout
-├── 📄 script.js # Chart rendering, data parsing, UI logic
-├── 📄 dump.csv # Source CSV with index data
+├── 📄 index.html
+
+├── 📄 style.css 
+
+├── 📄 script.js 
+
+├── 📄 dump.csv 
 
 ## ⚙️ How to Run Locally
 
