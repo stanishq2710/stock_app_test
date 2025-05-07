@@ -58,6 +58,7 @@ function updateChart(companyData, company){
       }]
     },
     options: {
+      indexAxis:'y',
       responsive: true,
       plugins: {
         title: {
@@ -65,15 +66,29 @@ function updateChart(companyData, company){
           text: `Index Details for ${company} (${d.index_date})`
         }
       },
+      tooltip:{
+        enalbled:true, //enable tooltip
+        callbacks:{
+          label: function(context){
+            const label = context.label || '';
+            const value = context.parsed.y ;
+            return `${label}: ${value}`;
+          }
+        }
+      },
+      interaction:{
+        mode:'nearest', // show tooltip for the nearest x-axis item
+        intersect: false
+      },
       scales: {
-        y: {
+        x: {
           beginAtZero: false,
           title: {
             display: true,
             text: "Value"
           }
         },
-        x: {
+        y: {
           title: {
             display: true,
             text: "Attribute"
