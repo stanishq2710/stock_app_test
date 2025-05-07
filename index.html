@@ -6,27 +6,21 @@
     <title>Stock App Dashboard</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script> -->
 </head>
 <body>
     <div class="container">
         <aside id="sidebar">
             <h2>Companies</h2>
+            <input type="text", id="searchInput" placeholder="Search Company..."/>
             <ul id="companyList"></ul>
+             <!-- <select id="companySelect">
+                <option selected disabled>
+                    Select a Company
+                </option>
+             </select> -->
         </aside>
         <main>
-            <!-- <select id="attributeSelect">
-                <option value="closing index value"> Closing index value</option>
-                <option value="open index value">Open Index Value</option>
-                <option value="high index value">High Index Value</option>
-                <option value="low index value">Low Index Value</option>
-                <option value="points change">Points Change</option>
-                <option value="change_percent">Change Percent</option>
-                <option value="volume">Volume</option>
-                <option value="turnover_rs_cr">Turnover (Rs. Cr)</option>
-                <option value="pe_ratio">P/E Ratio</option>
-                <option value="pb_ratio">P/B Ratio</option>
-                <option value="div_yield">Dividend Yield</option>
-            </select> -->
             <canvas id="chart"  width="600" height="400"></canvas>
         </main>
     </div>

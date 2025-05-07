@@ -1,12 +1,13 @@
-// const attributeSelect = document.getElementById("attributeSelect");
 const companyList = document.getElementById("companyList");
+const searchInput = document.getElementById("searchInput");
 let chart;
-
+let allCompanies =[]; // global list of all company names
+let fullData =[]; //global reference to csv data
 
 // fetching the csv file and parsing it into usable json objects
 async function fetchCsvData(params) {
     const res = await fetch("dump.csv");
-    const text  =await res.text();
+    const text  =await res.text(); //converting to text
     return parseCSV(text);
 }
 
@@ -45,6 +46,11 @@ function updateChart(companyData, company){
 
   // create a new chart instance
   const ctx = document.getElementById("chart").getContext("2d");
+  // create gradient just for enhancement 
+  const gradient = ctx.createLinearGradient(0, 0,600,0);
+  gradient.addColorStop(0, 'rgba(54, 162, 235, 0.7)');
+  gradient.addColorStop(1, 'rgba(153, 102, 255, 0.7)');
+  // creating horizontal bar 
   chart = new Chart(ctx, {
     type: "bar",
     data: {
@@ -52,20 +58,30 @@ function updateChart(companyData, company){
       datasets: [{
         label: `${company} - Attributes on ${d.index_date}`,
         data: values,
-        backgroundColor: "rgba(54, 162, 235, 0.6)",
+        backgroundColor: gradient,
         borderColor: "rgba(54, 162, 235, 1)",
-        borderWidth: 1
+        borderWidth: 1,
+        borderRadius:6
       }]
     },
     options: {
-      indexAxis:'y',
+      indexAxis:'y', //for horizontal bar chart
       responsive: true,
-      plugins: {
-        title: {
-          display: true,
-          text: `Index Details for ${company} (${d.index_date})`
-        }
+      animation:{
+        duration:1200,
+        easing:'easeInOutBack' // animation effect
       },
+      // plugins: {
+      //   title: {
+      //     display: true,
+      //     text: `Index Details for ${company} (${d.index_date})`,
+      //     font:{
+      //       family:'Segoe UI, Roboto, Arial',
+      //       size:18,
+      //       weight:'bold',
+      //     }
+      //   }
+      // },
       tooltip:{
         enalbled:true, //enable tooltip
         callbacks:{
@@ -98,29 +114,36 @@ function updateChart(companyData, company){
     }
   });
 }
-// renders a list of unique companies on the page 
-function renderCompanyList(data){
-  const companiesSet = new Set();
-  // collect unique company names from the data
-  data.forEach(d => {
-    if(d.index_name) companiesSet.add(d.index_name);
-  });
-  const companies = Array.from(companiesSet).sort(); //convert to sorted array
-  // create a list item for each company and add a click event 
+
+// create a list item for each company and add a click event 
+function displayCompanyList(companies) {
+  companyList.innerHTML ="";
   companies.forEach(company =>{
-    const li = document.createElement("li");
-    li.textContent =company;
-    li.onclick = () =>{
-      const companyData = data.filter(d =>d.index_name === company);
+    const li  = document.createElement("li");
+    li.textContent = company;
+    li.style.cursor = "pointer";
+    li.onclick =() =>{
+      const companyData = fullData.filter( d=>d.index_name === company);
       updateChart(companyData, company);
-    }
+    };
     companyList.appendChild(li);
   });
 }
 
-// when the page loads , fetch the data and populates the company list
-window.onload = async() => {
-  const data = await fetchCsvData();
-  // console.log("Parsed Data", data)
-  renderCompanyList(data);
-};
+// when the page loads, fetch the data and populates the company list 
+window.onload = async() =>{
+  fullData = await fetchCsvData();
+  // collect unique company names from the data
+  const companiesSet = new Set();
+  fullData.forEach(d =>{
+    if(d.index_name) companiesSet.add(d.index_name);
+  });
+  allCompanies = Array.from(companiesSet).sort(); //convert to sorted array
+  displayCompanyList(allCompanies);
+// search filter 
+  searchInput.addEventListener("input", () =>{
+    const query = searchInput.value.toLowerCase().trim();
+    const filteredCompanies = allCompanies.filter(name => name.toLowerCase().includes(query));
+    displayCompanyList(filteredCompanies);
+  });
+}

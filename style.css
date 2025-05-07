@@ -20,6 +20,13 @@ body {
     overflow-y: auto;
   }
   
+  #searchInput{
+    margin-bottom: 10px;
+    padding:6px;
+    width: 100%;
+    font-size:16px;
+  }
+
   #sidebar h2 {
     margin-top: 0;
   }
