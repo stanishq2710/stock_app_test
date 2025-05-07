@@ -147,3 +147,28 @@ window.onload = async() =>{
     displayCompanyList(filteredCompanies);
   });
 }
+
+// toggle between light and dark theme 
+// const themeToggle = document.getElementById("themeToggle");
+
+// themeToggle.addEventListener("click", ()=>{
+//   document.body.classList.toggle("dark-mode");
+//   document.body.classList.toggle("light-mode");
+//   if(document.body.classList.contains("dark-mode")){
+//     themeToggle.textContent = "☀️ Light Mode";
+//   }
+//   else{
+//     themeToggle.textContent = "🌙 Dark Mode";
+//   }
+//   if (document.body.classList.contains("dark-mode")) {
+//     document.getElementById("companyContainer").classList.add("dark");
+//     document.getElementById("companyContainer").classList.remove("light");
+//   } else {
+//     document.getElementById("companyContainer").classList.add("light");
+//     document.getElementById("companyContainer").classList.remove("dark");
+//   }
+// });
+
+// windoww.onload = async () =>{
+//   document.body.classList.add("light-mode");
+// }

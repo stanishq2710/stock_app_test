@@ -20,6 +20,13 @@ body {
     overflow-y: auto;
   }
   
+  #themeToggle{
+    position: fixed;
+    top:10px;
+    right:10px;
+    z-index: 1000;
+  }
+
   #searchInput{
     margin-bottom: 10px;
     padding:6px;
@@ -44,6 +51,8 @@ body {
   
   #companyList li:hover {
     text-decoration: underline;
+    background-color: rgba(100, 100, 100, 0.1);
+    cursor: pointer;
   }
   
   main {
@@ -55,3 +64,39 @@ body {
     width: 100% !important;
     height: 100% !important;
   }
+  /* body.light-mode {
+    background-color: #ffffff;
+    color: #000000;
+  }
+  
+  body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+  }
+  
+  #companyList li {
+    padding: 5px;
+  } */
+/* 
+  body.light-mode #companyContainer {
+    background-color: #f5f5f5;
+    color: #000;
+  }
+  
+  body.dark-mode #companyContainer {
+    background-color: #222;
+    color: #fff;
+  }
+  
+  #companyList li {
+    padding: 8px;
+    transition: background-color 0.3s;
+  }
+  
+  body.light-mode #companyList li:hover {
+    background-color: #e0e0e0;
+  }
+  
+  body.dark-mode #companyList li:hover {
+    background-color: #333;
+  } */
